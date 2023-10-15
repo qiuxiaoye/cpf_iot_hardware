@@ -1,0 +1,51 @@
+version: '3'
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - "1883:1883" # MQTT port
+    volumes:
+      - /home/xiaoye/mosquitto/config:/mosquitto/config # Your Mosquitto configuration file
+      - /home/xiaoye/mosquitto/mosquitto/data:/mosquitto/data # Persistent data volume for Mosquitto
+      - /home/xiaoye/mosquitto/mosquitto/log:/mosquitto/log # Log volume
+    restart: unless-stopped
+    networks:
+      - mqtt-network
+
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt
+    container_name: zigbee2mqtt
+    ports:
+      - "8080:8080"
+    volumes:
+      - /home/xiaoye/zigbee2mqtt/data:/app/data # Persistent data volume for Zigbee2MQTT
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0 # Replace with your Zigbee dongle's device path
+    environment:
+      - MQTT_SERVER=10.1.66.149
+      - MQTT_PORT=1883
+      - TZ=Asia/Singapore
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    networks:
+      - mqtt-network
+
+  homeassistant:
+    container_name: home-assistant
+    image: homeassistant/raspberrypi4-homeassistant:stable
+    ports:
+      - "8123:8123"
+    volumes:
+      - /home/xiaoye/home-assistant/config:/config
+    environment:
+      - TZ=Asia/Singapore
+    network_mode: host
+    depends_on:
+      - zigbee2mqtt
+    restart: always
+
+networks:
+  mqtt-network:
+    driver: bridge
