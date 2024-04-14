@@ -12,7 +12,7 @@ import cosmos_container
 # paho connection
 broker = 'mosquitto'
 port = 1883
-topic = "zigbee2mqtt"
+topic = "zigbee2mqtt/home_switch"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 # username = 'emqx'
