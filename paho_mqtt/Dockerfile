@@ -17,5 +17,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV COSMOS_DB_CONNECTION_STRING="Your_Cosmos_DB_Connection_String"
 ENV COSMOS_DB_NAME="Your_Database_Name"
 
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# Command to run when the container starts
+CMD ["python", "./paho_mqtt.py"]
