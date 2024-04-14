@@ -22,24 +22,24 @@ services:
       - mqtt-network
     restart: unless-stopped
 
-  # zigbee2mqtt:
-  #   image: koenkk/zigbee2mqtt
-  #   container_name: zigbee2mqtt
-  #   ports:
-  #     - "8080:8080"
-  #   volumes:
-  #     - /home/xiaoye/zigbee2mqtt/data:/app/data # Persistent data volume for Zigbee2MQTT
-  #   devices:
-  #     - /dev/ttyUSB0:/dev/ttyUSB0 # Replace with your Zigbee dongle's device path
-  #   environment:
-  #     - MQTT_SERVER=10.1.66.149
-  #     - MQTT_PORT=1883
-  #     - TZ=Asia/Singapore
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - mosquitto
-  #   networks:
-  #     - mqtt-network
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt
+    container_name: zigbee2mqtt
+    ports:
+      - "8080:8080"
+    volumes:
+      - /home/xiaoye/zigbee2mqtt/data:/app/data # Persistent data volume for Zigbee2MQTT
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0 # Replace with your Zigbee dongle's device path
+    environment:
+      - MQTT_SERVER=mosquitto
+      - MQTT_PORT=1883
+      - TZ=Asia/Singapore
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    networks:
+      - mqtt-network
 
   # homeassistant:
   #   container_name: home-assistant

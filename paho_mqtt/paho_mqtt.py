@@ -9,7 +9,7 @@ from paho.mqtt import client as mqtt_client
 # collection_name = dbname["user_1_items"]
 
 # paho connection
-broker = 'localhost'
+broker = 'mosquitto'
 port = 1883
 topic = "zigbee2mqtt"
 # generate client ID with pub prefix randomly
