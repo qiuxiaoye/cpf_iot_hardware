@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install Paho MQTT client
-RUN pip install paho-mqtt==1.7.0 
+RUN pip install paho-mqtt
 
 # Command to run when the container starts
 CMD ["python", "./paho_mqtt.py"]
