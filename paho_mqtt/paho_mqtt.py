@@ -2,6 +2,7 @@ import random
 import json
 from datetime import datetime
 from paho.mqtt import client as mqtt_client
+import cosmos_container
 # from ..mango.pymongo_get_database import get_database
 
 # mongodb connection
@@ -43,6 +44,8 @@ def subscribe(client: mqtt_client):
         json_msg['timestamp'] = datetime.now()
         json_msg['device_name'] = "aqara_meeting_room"
         print(json_msg)
+        cosmos_container.insert_data(json_msg)
+        
         # collection_name.insert_one(json_msg)
         # collection_name.insert_one(y)
 
