@@ -41,8 +41,8 @@ def subscribe(client: mqtt_client):
         json_msg=json.loads(str(msg.payload.decode("utf-8")))
         # y = json.dumps(msg.payload.decode())
         # json_msg['_id'] = 'aqara_motion_sensor'
-        json_msg['timestamp'] = datetime.now()
-        json_msg['device_name'] = "aqara_meeting_room"
+        # json_msg['timestamp'] = datetime.now()
+        # json_msg['device_name'] = "aqara_meeting_room"
         print(json_msg)
         cosmos_container.insert_data(json_msg)
         
