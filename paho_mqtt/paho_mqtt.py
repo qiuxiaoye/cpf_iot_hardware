@@ -12,7 +12,7 @@ import cosmos_container
 # paho connection
 broker = 'mosquitto'
 port = 1883
-topic = "zigbee2mqtt/home_switch"
+topic = "zigbee2mqtt/present sensor"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 # username = 'emqx'
@@ -26,8 +26,8 @@ def connect_mqtt() -> mqtt_client:
         else:
             print("Failed to connect, return code %d\n", rc)
 
-    # client = mqtt_client.Client(client_id)
-    client = mqtt_client.Client(mqtt_client.CallbackAPIVersion.VERSION1, client_id)
+    client = mqtt_client.Client(client_id)
+    # client = mqtt_client.Client(mqtt_client.CallbackAPIVersion.VERSION1, client_id)
     
     # client.username_pw_set(username, password)
     client.on_connect = on_connect

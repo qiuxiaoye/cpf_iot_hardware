@@ -52,7 +52,7 @@ def get_all_items():
 def send_single_message(message):
 
     # message = Message(json.dumps(message))
-    message.content_encoding = "utf-8"
+    # message.content_encoding = "utf-8"
     message.content_type = "application/json"
     print("Sending message: {}".format(message))
     client_iot.send_message(message)
