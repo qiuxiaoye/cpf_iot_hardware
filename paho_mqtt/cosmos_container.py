@@ -50,10 +50,17 @@ def get_all_items():
     # return items
 
 def send_single_message(message):
+        # Check if data is a list and iterate over items
+    if isinstance(message, list):
+        for item in message:
+            client_iot.send_message(item)
+    else:
+        # If data is a single dictionary, insert it directly
+        client_iot.send_message(message)
 
     # message = Message(json.dumps(message))
     # message.content_encoding = "utf-8"
     # message.content_type = "application/json"
-    print("Sending message: {}".format(message))
-    client_iot.send_message(message)
+    # print("Sending message: {}".format(message))
+    # client_iot.send_message(message)
     print("Message successfully sent")
