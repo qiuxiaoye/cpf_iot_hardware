@@ -44,7 +44,8 @@ def subscribe(client: mqtt_client):
         # json_msg['timestamp'] = datetime.now()
         # json_msg['device_name'] = "aqara_meeting_room"
         print(json_msg)
-        cosmos_container.insert_data(json_msg)
+        # cosmos_container.insert_data(json_msg)
+        cosmos_container.send_single_message(json_msg);
         
         # collection_name.insert_one(json_msg)
         # collection_name.insert_one(y)
