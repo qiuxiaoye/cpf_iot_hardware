@@ -40,24 +40,27 @@ def connect_mqtt() -> mqtt_client:
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
-        # print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-        # json_msg=json.loads(str(msg.payload.decode("utf-8")))
-        # # y = json.dumps(msg.payload.decode())
-        # # json_msg['_id'] = 'aqara_motion_sensor'
-        # # json_msg['timestamp'] = datetime.now()
-        # # json_msg['device_name'] = "aqara_meeting_room"
-        # print(json_msg)
-        # # cosmos_container.insert_data(json_msg)
-        # cosmos_container.send_single_message(json_msg);
     
         print(f"MQTT message received: {msg.topic} {str(msg.payload)}")
+
         try:
+            # Decode the original message payload
+            decoded_payload = msg.payload.decode('utf-8')
+            message_dict = json.loads(decoded_payload)
+            
+            # Add the current datetime to the message
+            message_dict['timestamp'] = datetime.now().isoformat()
+            
+            # Convert the updated dictionary back to a JSON string
+            updated_payload = json.dumps(message_dict)
+            
             # Create a message and send it to IoT Hub
-            iot_message = Message(msg.payload)
+            iot_message = Message(updated_payload)
             iot_message.content_encoding = "utf-8"
             iot_message.content_type = "application/json"
             iothub_client.send_message(iot_message)
-            print("Message successfully sent to Azure IoT Hub")
+            print("Message successfully sent to Azure IoT Hub with timestamp")
+            
         except Exception as e:
             print(f"Failed to send message to IoT Hub: {e}")
             
