@@ -16,6 +16,9 @@ All software installation is pre-configed by `docker-compose`
 2. Raspberry Pi Account Setup (optional)
 3. Install Docker and Docker Compose
 
+## Command
+sudo docker-compose up -develop
 
-
+sudo docker-compose up -d
+sudo docker-compose down
 

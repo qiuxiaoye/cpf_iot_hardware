@@ -4,6 +4,7 @@ from datetime import datetime
 from paho.mqtt import client as mqtt_client
 import cosmos_container
 from azure.iot.device import IoTHubDeviceClient, Message
+import pytz
 
 # from ..mango.pymongo_get_database import get_database
 
@@ -19,6 +20,7 @@ topic = "zigbee2mqtt/present_sensor"
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 # username = 'emqx'
 # password = 'public'
+singapore = pytz.timezone('Asia/Singapore')
 
 IOT_HUB_CONNECTION_STRING = "HostName=CPF-IOT-HUB.azure-devices.net;DeviceId=device-1;SharedAccessKey=QsuvFYqsfJdH+3/cWbSI2Im1bTNSr9mCSI9Mi+qu+Nw="
 
@@ -47,9 +49,11 @@ def subscribe(client: mqtt_client):
             # Decode the original message payload
             decoded_payload = msg.payload.decode('utf-8')
             message_dict = json.loads(decoded_payload)
-            
+
+            current_singapore_time = datetime.now(pytz.utc).astimezone(singapore).isoformat()
+
             # Add the current datetime to the message
-            message_dict['timestamp'] = datetime.now().isoformat()
+            message_dict['timestamp'] = current_singapore_time
             
             # Convert the updated dictionary back to a JSON string
             updated_payload = json.dumps(message_dict)
@@ -60,7 +64,7 @@ def subscribe(client: mqtt_client):
             iot_message.content_type = "application/json"
             iothub_client.send_message(iot_message)
             print("Message successfully sent to Azure IoT Hub with timestamp")
-            
+
         except Exception as e:
             print(f"Failed to send message to IoT Hub: {e}")
             
