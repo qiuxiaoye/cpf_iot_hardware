@@ -17,7 +17,7 @@ All software installation is pre-configed by `docker-compose`
 3. Install Docker and Docker Compose
 
 ## Command
-sudo docker-compose up -develop
+sudo docker-compose up -d --build
 
 sudo docker-compose up -d
 sudo docker-compose down
