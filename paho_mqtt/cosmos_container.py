@@ -22,7 +22,6 @@ cosmos_endpoint = os.getenv('COSMOS_ENDPOINT')
 cosmos_key = os.getenv('COSMOS_KEY')
 
 client = CosmosClient(cosmos_endpoint, credential=cosmos_key)
-print(client.get_database_account)
 
 database_name = os.getenv('COSMOS_DATABASE_NAME')
 container_name = os.getenv('COSMOS_CONTAINER_NAME')
