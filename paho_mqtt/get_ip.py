@@ -1,6 +1,5 @@
 import socket
 import connect_to_iot_hub
-import json
 
 def get_ip_address():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
