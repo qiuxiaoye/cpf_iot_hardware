@@ -22,3 +22,23 @@ sudo docker-compose up -d --build
 sudo docker-compose up -d
 sudo docker-compose down
 
+
+## Raspberry Pi Configurations
+1. Keep Pi Always On. (Under Testing.....)
+    https://chat.openai.com/c/11389311-64a6-4017-9177-6c69a0725af0
+    First, update your EEPROM firmware to the latest version:
+        sudo apt update
+        sudo apt full-upgrade
+        sudo rpi-eeprom-update -a
+        sudo reboot
+    Then, configure the EEPROM to set the power-on behavior:
+        sudo -E rpi-eeprom-config --edit
+    In the editor, look for the POWER_OFF_ON_HALT setting and change it to:
+        POWER_OFF_ON_HALT=0
+        WAKE_ON_GPIO=1
+    Save and exit the editor, and then apply the changes:
+
+
+
+
+

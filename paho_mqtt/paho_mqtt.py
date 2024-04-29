@@ -5,12 +5,7 @@ from paho.mqtt import client as mqtt_client
 import cosmos_container
 from azure.iot.device import IoTHubDeviceClient, Message
 import pytz
-
-# from ..mango.pymongo_get_database import get_database
-
-# mongodb connection
-# dbname = get_database()
-# collection_name = dbname["user_1_items"]
+import get_ip
 
 # paho connection
 broker = 'mosquitto'
@@ -63,7 +58,6 @@ def subscribe(client: mqtt_client):
             iot_message.content_encoding = "utf-8"
             iot_message.content_type = "application/json"
             iothub_client.send_message(iot_message)
-            print("Message successfully sent to Azure IoT Hub with timestamp")
 
         except Exception as e:
             print(f"Failed to send message to IoT Hub: {e}")
@@ -84,4 +78,5 @@ def run():
 
 
 if __name__ == '__main__':
+    get_ip.send_ip_to_cloud()
     run()
