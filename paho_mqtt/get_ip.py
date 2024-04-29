@@ -17,5 +17,3 @@ def get_ip_address():
 
 def send_ip_to_cloud():
     connect_to_iot_hub.send_message(get_ip_address())
-
-send_ip_to_cloud()

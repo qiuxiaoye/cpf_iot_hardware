@@ -78,5 +78,5 @@ def run():
 
 
 if __name__ == '__main__':
-    # get_ip.send_ip_to_cloud()
+    get_ip.send_ip_to_cloud()
     run()
