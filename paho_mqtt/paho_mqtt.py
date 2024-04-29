@@ -5,8 +5,7 @@ from paho.mqtt import client as mqtt_client
 import cosmos_container
 from azure.iot.device import IoTHubDeviceClient, Message
 import pytz
-import get_ip
-import connect_to_iot_hub
+# import get_ip
 
 # paho connection
 broker = 'mosquitto'
@@ -52,16 +51,13 @@ def subscribe(client: mqtt_client):
             message_dict['timestamp'] = current_singapore_time
             
             # Convert the updated dictionary back to a JSON string
-
-            connect_to_iot_hub.send_message(message_dict)
-
-            # updated_payload = json.dumps(message_dict)
+            updated_payload = json.dumps(message_dict)
             
-            # # Create a message and send it to IoT Hub
-            # iot_message = Message(updated_payload)
-            # iot_message.content_encoding = "utf-8"
-            # iot_message.content_type = "application/json"
-            # iothub_client.send_message(iot_message)
+            # Create a message and send it to IoT Hub
+            iot_message = Message(updated_payload)
+            iot_message.content_encoding = "utf-8"
+            iot_message.content_type = "application/json"
+            iothub_client.send_message(iot_message)
 
         except Exception as e:
             print(f"Failed to send message to IoT Hub: {e}")
@@ -72,7 +68,7 @@ def subscribe(client: mqtt_client):
     client.subscribe(topic)
     client.on_message = on_message
 
-# iothub_client = IoTHubDeviceClient.create_from_connection_string(IOT_HUB_CONNECTION_STRING)
+iothub_client = IoTHubDeviceClient.create_from_connection_string(IOT_HUB_CONNECTION_STRING)
 
 
 def run():
@@ -82,5 +78,5 @@ def run():
 
 
 if __name__ == '__main__':
-    get_ip.send_ip_to_cloud()
+    # get_ip.send_ip_to_cloud()
     run()
