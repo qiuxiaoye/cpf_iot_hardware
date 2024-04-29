@@ -5,6 +5,7 @@ from paho.mqtt import client as mqtt_client
 import cosmos_container
 from azure.iot.device import IoTHubDeviceClient, Message
 import pytz
+import get_ip
 import connect_to_iot_hub
 
 # paho connection
