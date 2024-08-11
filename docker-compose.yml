@@ -5,30 +5,35 @@ services:
     container_name: mosquitto-iot
     ports:
       - "1883:1883" # MQTT port
+    command: >
+      sh -c "mkdir -p /home/IoT/mosquitto/data /home/IoT/mosquitto/log && mosquitto -c /mosquitto/config/mosquitto.conf"
     volumes:
-      - /home/xiaoye/mosquitto/config:/mosquitto/config # Your Mosquitto configuration file
-      - /home/xiaoye/mosquitto/mosquitto/data:/mosquitto/data # Persistent data volume for Mosquitto
-      - /home/xiaoye/mosquitto/mosquitto/log:/mosquitto/log # Log volume
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf # Mount the Mosquitto configuration file
+      - /home/IoT/mosquitto/data:/mosquitto/data # Persistent data volume for Mosquitto
+      - /home/IoT/mosquitto/log:/mosquitto/log # Log volume
     restart: unless-stopped
     networks:
       - mqtt-network
 
-  paho_mqtt:
-    build: ./paho_mqtt  # Directory containing Dockerfile and paho_mqtt.py
-    container_name: paho_mqtt_runner
-    depends_on:
-      - mosquitto
-    networks:
-      - mqtt-network
-    restart: unless-stopped
+  # paho_mqtt:
+  #   build: ./paho_mqtt  # Directory containing Dockerfile and paho_mqtt.py
+  #   container_name: paho_mqtt_runner
+  #   depends_on:
+  #     - mosquitto
+  #   networks:
+  #     - mqtt-network
+  #   restart: unless-stopped
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
     container_name: zigbee2mqtt-iot
     ports:
       - "8080:8080"
+    command: >
+      sh -c "mkdir -p /home/IoT/zigbee2mqtt/data"
     volumes:
-      - /home/xiaoye/zigbee2mqtt/data:/app/data # Persistent data volume for Zigbee2MQTT
+      # - /home/IoT/zigbee2mqtt/configuration.yaml:/app/data/configuration.yaml
+      - /home/IoT/zigbee2mqtt/data:/app/data
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0 # Replace with your Zigbee dongle's device path
     environment:
@@ -41,19 +46,19 @@ services:
     networks:
       - mqtt-network
 
-  # homeassistant:
-  #   container_name: home-assistant
-  #   image: homeassistant/raspberrypi4-homeassistant:stable
-  #   ports:
-  #     - "8123:8123"
-  #   volumes:
-  #     - /home/xiaoye/home-assistant/config:/config
-  #   environment:
-  #     - TZ=Asia/Singapore
-  #   network_mode: host
-  #   depends_on:
-  #     - zigbee2mqtt
-  #   restart: always
+  #  homeassistant:
+  #    container_name: home-assistant
+  #    image: homeassistant/raspberrypi4-homeassistant:stable
+  #    ports:
+  #      - "8123:8123"
+  #    volumes:
+  #      - /home/xiaoye/home-assistant/config:/config
+  #    environment:
+  #      - TZ=Asia/Singapore
+  #    network_mode: host
+  #    depends_on:
+  #      - zigbee2mqtt
+  #    restart: always
 
 networks:
   mqtt-network:
