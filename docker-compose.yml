@@ -15,31 +15,28 @@ services:
     networks:
       - mqtt-network
 
-  # paho_mqtt:
-  #   build: ./paho_mqtt  # Directory containing Dockerfile and paho_mqtt.py
-  #   container_name: paho_mqtt_runner
-  #   depends_on:
-  #     - mosquitto
-  #   networks:
-  #     - mqtt-network
-  #   restart: unless-stopped
+  paho_mqtt:
+    build: ./paho_mqtt  # Directory containing Dockerfile and paho_mqtt.py
+    container_name: paho_mqtt_runner
+    depends_on:
+      - mosquitto
+    networks:
+      - mqtt-network
+    restart: unless-stopped
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
     container_name: zigbee2mqtt-iot
     ports:
       - "8080:8080"
-    command: >
-      sh -c "mkdir -p /home/IoT/zigbee2mqtt/data"
     volumes:
-      # - /home/IoT/zigbee2mqtt/configuration.yaml:/app/data/configuration.yaml
-      - /home/IoT/zigbee2mqtt/data:/app/data
+      - /home/IoT/zigbee2mqtt/data/configuration.yaml:/app/data/configuration.yaml # Ensure this file exists
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0 # Replace with your Zigbee dongle's device path
-    environment:
-      - MQTT_SERVER=mosquitto
-      - MQTT_PORT=1883
-      - TZ=Asia/Singapore
+    # environment:
+    #   - MQTT_SERVER=mosquitto
+    #   - MQTT_PORT=1883
+    #   - TZ=Asia/Singapore
     restart: unless-stopped
     depends_on:
       - mosquitto
