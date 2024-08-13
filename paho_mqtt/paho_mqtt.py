@@ -9,7 +9,7 @@ import pytz
 # paho connection
 broker = 'mosquitto'
 port = 1883
-topic = "zigbee2mqtt/present_sensor"
+topic = "zigbee2mqtt/#"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 # username = 'emqx'
@@ -48,6 +48,7 @@ def subscribe(client: mqtt_client):
 
             # Add the current datetime to the message
             message_dict['timestamp'] = current_singapore_time
+            # message_dict['device_name'] = msg.topic
             
             # Convert the updated dictionary back to a JSON string
             updated_payload = json.dumps(message_dict)
