@@ -5,8 +5,8 @@ services:
     container_name: mosquitto-iot
     ports:
       - "1883:1883" # MQTT port
-    command: >
-      sh -c "mkdir -p /home/IoT/mosquitto/data /home/IoT/mosquitto/log && mosquitto -c /mosquitto/config/mosquitto.conf"
+    # command: >
+    #   sh -c "mkdir -p /home/IoT/mosquitto/data /home/IoT/mosquitto/log && mosquitto -c /mosquitto/config/mosquitto.conf"
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf # Mount the Mosquitto configuration file
       - /home/IoT/mosquitto/data:/mosquitto/data # Persistent data volume for Mosquitto
