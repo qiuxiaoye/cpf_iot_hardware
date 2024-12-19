@@ -3,5 +3,3 @@ azure-iot-device
 paho-mqtt
 python-dotenv
 pytz
-netifaces
-socket
