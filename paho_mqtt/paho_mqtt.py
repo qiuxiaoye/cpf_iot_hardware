@@ -22,7 +22,7 @@ singapore = pytz.timezone('Asia/Singapore')
 IP_ADDRESS = IPFetcher.get_device_ip()
 
 # IoT Hub connection string
-IOT_HUB_CONNECTION_STRING = "HostName=CPF-IOT-HUB.azure-devices.net;DeviceId=device-1;SharedAccessKey=QsuvFYqsfJdH+3/cWbSI2Im1bTNSr9mCSI9Mi+qu+Nw="
+IOT_HUB_CONNECTION_STRING = 'HostName=CPF-IOT-HUB.azure-devices.net;DeviceId=Device-2;SharedAccessKey=Ek5i4e0Uq0n8AB1EAssOfcEJXqwC6xPRiPOMJxRV4JA='
 
 # Dictionary to store the last known "presence" status of each device
 last_presence_status = {}
