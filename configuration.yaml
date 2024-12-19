@@ -5,9 +5,10 @@ mqtt:
   server: mqtt://mosquitto
 serial:
   port: /dev/ttyUSB0
-devices:
-  '0x54ef44100064b0cb':
-    friendly_name: '0x54ef44100064b0cb'
-
 frontend:
   port: 8080
+devices:
+  '0x54ef44100064b0cb':
+    friendly_name: 'test_device_1'
+  '0x54ef441000811c36':
+    friendly_name: 'test_device_2'
