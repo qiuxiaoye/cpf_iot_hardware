@@ -15,7 +15,7 @@ services:
       - mqtt-network
 
   paho_mqtt:
-    build: ./paho_mqtt  # Directory containing Dockerfile and paho_mqtt.py
+    build: ./paho_mqtt
     container_name: paho_mqtt_runner
     depends_on:
       - mosquitto
