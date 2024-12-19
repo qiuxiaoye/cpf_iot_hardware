@@ -84,6 +84,7 @@ def subscribe(client: mqtt_client.Client):
 iothub_client = IoTHubDeviceClient.create_from_connection_string(IOT_HUB_CONNECTION_STRING)
 
 def run():
+    # send ip to telegram
     client = connect_mqtt()
     subscribe(client)
     client.loop_forever()
