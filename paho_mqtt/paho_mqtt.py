@@ -14,7 +14,6 @@ load_dotenv()
 
 # Paho MQTT connection details
 broker = 'mosquitto'
-# broker = '10.0.128.66'
 port = 1883
 topics = ["zigbee2mqtt/test_device_1", "zigbee2mqtt/test_device_2"]  # List of topics
 client_id = f'python-mqtt-{random.randint(0, 100)}'
