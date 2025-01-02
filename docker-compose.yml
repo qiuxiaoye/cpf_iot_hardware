@@ -16,7 +16,8 @@ services:
 
   paho_mqtt:
     build: ./paho_mqtt
-    container_name: paho_mqtt_runner
+    image: cpf-iot/hardware
+    container_name: cpf_iot_runner
     depends_on:
       - mosquitto
     networks:
@@ -41,20 +42,6 @@ services:
       - mosquitto
     networks:
       - mqtt-network
-
-  # homeassistant:
-  #   container_name: home-assistant
-  #   image: homeassistant/raspberrypi4-homeassistant:stable
-  #   ports:
-  #     - "8123:8123"
-  #   volumes:
-  #     - /home/xiaoye/home-assistant/config:/config
-  #   environment:
-  #     - TZ=Asia/Singapore
-  #   network_mode: host
-  #   depends_on:
-  #     - zigbee2mqtt
-  #   restart: always
 
 networks:
   mqtt-network:
