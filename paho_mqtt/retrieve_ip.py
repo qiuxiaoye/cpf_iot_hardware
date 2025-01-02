@@ -56,3 +56,6 @@ class IPFetcher:
             return "Interface wlan0 not found"
         except KeyError:
             return "No address assigned to wlan0"
+        
+resutl = IPFetcher.get_ip_from_interface("wlan0")
+print(f"wlan0 IP Address: {resutl}")
