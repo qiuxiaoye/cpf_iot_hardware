@@ -18,7 +18,7 @@ port = 1883
 topics = ["zigbee2mqtt/test_device_1", "zigbee2mqtt/test_device_2"]  # List of topics
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 singapore = pytz.timezone('Asia/Singapore')
-IP_ADDRESS = IPFetcher.get_ip_from_interface("wlan0")
+IP_ADDRESS = IPFetcher.get_ip_from_env()
 
 # IoT Hub connection string
 IOT_HUB_CONNECTION_STRING = 'HostName=CPF-IOT-HUB.azure-devices.net;DeviceId=Device-2;SharedAccessKey=Ek5i4e0Uq0n8AB1EAssOfcEJXqwC6xPRiPOMJxRV4JA='

@@ -1,6 +1,7 @@
 import socket
 import requests
 import netifaces
+import os
 
 class IPFetcher:
     def __init__(self):
@@ -56,6 +57,9 @@ class IPFetcher:
             return "Interface wlan0 not found"
         except KeyError:
             return "No address assigned to wlan0"
+        
+    def get_ip_from_env():
+        return os.getenv("HOST_WLAN0_IP", "No IP passed to container") 
         
 resutl = IPFetcher.get_ip_from_interface("wlan0")
 print(f"wlan0 IP Address: {resutl}")

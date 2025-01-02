@@ -22,6 +22,8 @@ services:
       - mosquitto
     networks:
       - mqtt-network
+    environment:
+      - HOST_WLAN0_IP=${HOST_WLAN0_IP}
     restart: unless-stopped
 
   zigbee2mqtt:
