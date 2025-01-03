@@ -1,4 +1,4 @@
 mosquitto/log/
 mosquitto/data/
 zigbee2mqtt/log/
-zigbee2mqtt/data/log/
+zigbee2mqtt/data/
