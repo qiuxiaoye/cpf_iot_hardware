@@ -45,6 +45,12 @@ services:
     networks:
       - mqtt-network
 
+  hardware_service:
+    build: ./hardware_service
+    image: cpf-iot/hardware-service
+    container_name: hardware_service
+    network_mode: host
+
 networks:
   mqtt-network:
     driver: bridge
