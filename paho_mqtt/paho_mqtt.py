@@ -8,9 +8,12 @@ from azure.iot.device import IoTHubDeviceClient, Message
 import pytz
 from retrieve_ip import IPFetcher
 from telegram_message import Telegram_Message
+import logging
 
 
 load_dotenv()
+
+logging.basicConfig(level=logging.DEBUG)
 
 # Paho MQTT connection details
 broker = 'mosquitto'
@@ -18,7 +21,11 @@ port = 1883
 topics = ["zigbee2mqtt/test_device_1", "zigbee2mqtt/test_device_2"]  # List of topics
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 singapore = pytz.timezone('Asia/Singapore')
-IP_ADDRESS = IPFetcher.get_ip_from_env()
+# IP_ADDRESS = IPFetcher.get_ip_from_env()
+# IP_ADDRESS = os.getenv("HARDWARE_IP")
+# HOST_NAME = os.getenv("HARDWARE_HOSTNAME")
+# logging.debug(f"Received Hardware Info - Hostname: {IP_ADDRESS}, IP Address: {HOST_NAME}")
+
 
 # IoT Hub connection string
 IOT_HUB_CONNECTION_STRING = 'HostName=CPF-IOT-HUB.azure-devices.net;DeviceId=Device-2;SharedAccessKey=Ek5i4e0Uq0n8AB1EAssOfcEJXqwC6xPRiPOMJxRV4JA='
@@ -91,8 +98,7 @@ def subscribe(client: mqtt_client.Client):
 iothub_client = IoTHubDeviceClient.create_from_connection_string(IOT_HUB_CONNECTION_STRING)
 
 def run():
-    # send ip to telegram
-    Telegram_Message().send_ip_to_telegram(IP_ADDRESS)
+
     client = connect_mqtt()
     subscribe(client)
     client.loop_forever()

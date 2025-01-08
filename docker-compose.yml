@@ -20,11 +20,15 @@ services:
     container_name: cpf_iot_runner
     depends_on:
       - mosquitto
+      - hardware_service
     networks:
       - mqtt-network
-    environment:
-      - HOST_WLAN0_IP=${HOST_WLAN0_IP}
+    # environment:
+    #   - HARDWARE_SERVICE_URL=http://host.docker.internal:5001/info
+    #   - HOST_WLAN0_IP=${HOST_WLAN0_IP}
     restart: unless-stopped
+    # entrypoint: >
+    #   sh -c "python3 get_hardware_info.py && python3 main.py"
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
@@ -50,6 +54,9 @@ services:
     image: cpf-iot/hardware-service
     container_name: hardware_service
     network_mode: host
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Singapore
 
 networks:
   mqtt-network:
