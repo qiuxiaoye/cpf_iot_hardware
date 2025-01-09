@@ -33,7 +33,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./zigbee2mqtt/data/configuration.yaml:/app/data/configuration.yaml
+      - ./zigbee2mqtt/data:/app/data
       - ./zigbee2mqtt/log:/app/data/log
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
