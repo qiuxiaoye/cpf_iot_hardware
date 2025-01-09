@@ -1,0 +1,65 @@
+{
+  "gateway": {
+    "id": "1efd464f-bff6-4779-8940-08d9df337fc9",
+    "name": "PRA0801",
+    "type": "Raspberry Pi",
+    "location": {
+      "room": "PRA0801",
+      "building": "NSQ Tower A",
+      "floor": 8
+    },
+    "config": {
+      "mosquitto": {
+        "broker": "mosquitto",
+        "port": 1883
+      },
+      "zigbee2mqtt": {
+        "mqtt": {
+          "broker": "zigbee2mqtt",
+          "port": 1883
+        },
+        "serial": {
+          "port": "/dev/ttyUSB0",
+          "baudrate": 115200
+        },
+        "frontend": {
+          "port": 8080
+        },
+        "devices": {
+          "sensor_device_1": {
+            "device_id": "0x54ef44100064b0cb",
+            "friendly_name": "test_device_1"
+          }
+        }
+      },
+      "iot_hub": {
+        "connection_string": ""
+      },
+      "network": {
+        "interface": "wlan0",
+        "hostname": "test-device-1",
+        "ip": "10.1.66.154"
+      }
+    },
+    "child_device": {
+      "sensor_device_1": {
+        "sensor_id": "123456",
+        "sensor_name": "",
+        "sensor_type": "",
+        "connection_type": "mqtt",
+        "room_number": "PRA0801",
+        "rbs_object_id": "1efd464f-bff6-4779-8940-08d9df337fc9",
+        "firmwareVersion": "1.0.0",
+        "status": "Active"
+      }
+    },
+    "info": {
+      "firmwareVersion": "1.0.0",
+      "status": "Active",
+      "lastRestart": "2024-12-27T08:00:00Z",
+      "lastModified": "2024-12-26T15:30:00Z",
+      "lastConnection": "2024-12-27T07:50:00Z",
+      "uptime": "10 days"
+    }
+  }
+}
