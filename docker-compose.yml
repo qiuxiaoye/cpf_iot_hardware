@@ -23,12 +23,9 @@ services:
       - hardware_service
     networks:
       - mqtt-network
-    # environment:
-    #   - HARDWARE_SERVICE_URL=http://host.docker.internal:5001/info
-    #   - HOST_WLAN0_IP=${HOST_WLAN0_IP}
+    environment:
+      - TZ=Asia/Singapore
     restart: unless-stopped
-    # entrypoint: >
-    #   sh -c "python3 get_hardware_info.py && python3 main.py"
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
@@ -38,7 +35,6 @@ services:
     volumes:
       - ./zigbee2mqtt/data/configuration.yaml:/app/data/configuration.yaml
       - ./zigbee2mqtt/log:/app/data/log
-      # - ./zigbee2mqtt/log:/app/log
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
     environment:
