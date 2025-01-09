@@ -4,6 +4,14 @@ FROM python:3.9-slim-bullseye
 # Set the working directory
 WORKDIR /app
 
+# This is only needed for raspberry pi
+# Install necessary system dependencies for building Python packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
+    build-essential \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Copy only necessary files
 COPY . /app/
 COPY requirements.txt /app/

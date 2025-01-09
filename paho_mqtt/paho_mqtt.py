@@ -21,10 +21,6 @@ port = 1883
 topics = ["zigbee2mqtt/test_device_1", "zigbee2mqtt/test_device_2"]  # List of topics
 client_id = f'python-mqtt-{random.randint(0, 100)}'
 singapore = pytz.timezone('Asia/Singapore')
-# IP_ADDRESS = IPFetcher.get_ip_from_env()
-# IP_ADDRESS = os.getenv("HARDWARE_IP")
-# HOST_NAME = os.getenv("HARDWARE_HOSTNAME")
-# logging.debug(f"Received Hardware Info - Hostname: {IP_ADDRESS}, IP Address: {HOST_NAME}")
 
 
 # IoT Hub connection string
