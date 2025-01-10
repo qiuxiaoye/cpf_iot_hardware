@@ -17,10 +17,9 @@ All software installation is pre-configed by `docker-compose`
 3. Install Docker and Docker Compose
 
 ## Command
-sudo docker-compose up -d --build
-
-sudo docker-compose up -d
-sudo docker-compose down
+sudo docker-compose up -d --build   (build and run docker service)
+sudo docker-compose up -d           (run docker service)
+sudo docker-compose stop            (stop docker service)
 
 
 ## Raspberry Pi Configurations
