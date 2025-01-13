@@ -14,7 +14,18 @@ services:
     networks:
       - mqtt-network
 
-
+  paho_mqtt:
+    build: ./paho_mqtt
+    image: cpf-iot/hardware
+    container_name: cpf_iot_runner
+    depends_on:
+      - mosquitto
+      - hardware_service
+    networks:
+      - mqtt-network
+    environment:
+      - TZ=Asia/Singapore
+    restart: unless-stopped
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
@@ -34,20 +45,9 @@ services:
     networks:
       - mqtt-network
 
-  message_router:
-    image: xiaoyeqiu514/cpf-iot-message-router
-    container_name: message_router
-    depends_on:
-      - mosquitto
-      - hardware_service
-    networks:
-      - mqtt-network
-    environment:
-      - TZ=Asia/Singapore
-    restart: unless-stopped
-
   hardware_service:
-    image: xiaoyeqiu514/cpf-iot-hardware
+    build: ./hardware_service
+    image: cpf-iot/hardware-service
     container_name: hardware_service
     network_mode: host
     restart: unless-stopped
