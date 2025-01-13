@@ -1,6 +1,0 @@
-azure-cosmos
-azure-iot-device
-paho-mqtt
-python-dotenv
-pytz
-netifaces
