@@ -37,6 +37,7 @@ services:
     container_name: message_router
     depends_on:
       - mosquitto
+      - zigbee2mqtt
       - hardware_service
     networks:
       - mqtt-network
@@ -48,6 +49,8 @@ services:
     image: xiaoyeqiu514/cpf-iot-hardware
     container_name: hardware_service
     network_mode: host
+    depends_on:
+      - zigbee2mqtt
     restart: unless-stopped
     environment:
       - TZ=Asia/Singapore
