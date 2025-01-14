@@ -9,6 +9,8 @@ services:
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
     restart: unless-stopped
+    depends_on:
+      - hardware_service
     environment:
       - TZ=Asia/Singapore
     networks:
@@ -29,6 +31,7 @@ services:
     restart: unless-stopped
     depends_on:
       - mosquitto
+      - hardware_service
     networks:
       - mqtt-network
 
