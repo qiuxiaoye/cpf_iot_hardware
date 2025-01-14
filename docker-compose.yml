@@ -52,8 +52,6 @@ services:
     image: xiaoyeqiu514/cpf-iot-hardware
     container_name: hardware_service
     network_mode: host
-    depends_on:
-      - zigbee2mqtt
     restart: unless-stopped
     environment:
       - TZ=Asia/Singapore
