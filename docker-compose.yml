@@ -1,4 +1,14 @@
 services:
+  hardware_service:
+    image: xiaoyeqiu514/cpf-iot-hardware
+    container_name: hardware_service
+    volumes:
+      - ./hardware_service:/app/data
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Singapore
+
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto-iot
@@ -48,13 +58,7 @@ services:
       - TZ=Asia/Singapore
     restart: unless-stopped
 
-  hardware_service:
-    image: xiaoyeqiu514/cpf-iot-hardware
-    container_name: hardware_service
-    network_mode: host
-    restart: unless-stopped
-    environment:
-      - TZ=Asia/Singapore
+
 
 networks:
   mqtt-network:
