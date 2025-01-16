@@ -56,7 +56,7 @@ services:
       - mqtt-network
     environment:
       - TZ=Asia/Singapore
-      - CONNECTION_STRING=${CONNECTION_STRING}
+      - IOT_HUB_CONNECTION_STRING=${IOT_HUB_CONNECTION_STRING}
     restart: unless-stopped
 
 networks:
