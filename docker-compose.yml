@@ -56,9 +56,8 @@ services:
       - mqtt-network
     environment:
       - TZ=Asia/Singapore
+      - CONNECTION_STRING=${CONNECTION_STRING}
     restart: unless-stopped
-
-
 
 networks:
   mqtt-network:
