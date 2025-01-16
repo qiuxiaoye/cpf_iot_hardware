@@ -2,4 +2,5 @@ mosquitto/log/
 mosquitto/data/
 zigbee2mqtt/log/
 zigbee2mqtt/data/
+hardware_service/
 .env
