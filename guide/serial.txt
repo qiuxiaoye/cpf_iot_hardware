@@ -1,0 +1,17 @@
+serial:
+  port: /dev/ttyUSB0
+  adapter: zstack
+
+sudo nano zigbee2mqtt/data/configuration.yaml
+
+docker compose up -d zigbee2mqtt mosquitto
+
+sudo docker compose up zigbee2mqtt mosquitto
+
+docker logs zigbee2mqtt-iot 
+
+mosquitto
+
+cd Code/cpf_iot_hardware/ && docker compose up zigbee2mqtt mosquitto
+
+cd Code/cpf_iot_hardware/ && sudo docker compose down zigbee2mqtt mosquitto

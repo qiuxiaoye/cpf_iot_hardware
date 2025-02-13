@@ -1,0 +1,7 @@
+mkdir Code &&
+cd Code &&
+git clone https://github.com/qiuxiaoye/cpf_iot_hardware.git &&
+cd cpf_iot_hardware &&
+docker compose pull &&
+docker compose up -d hardware_service &&
+sudo shutdown now

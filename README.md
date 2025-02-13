@@ -39,5 +39,8 @@ sudo docker-compose stop            (stop docker service)
 
 
 
+# Error
+>> Error response from daemon: error gathering device information while adding custom device "/dev/ttyUSB0": no such >> file or directory
 
+Error cause because zigbee dongle is not plugin
 

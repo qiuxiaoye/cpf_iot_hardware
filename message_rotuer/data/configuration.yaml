@@ -1,0 +1,19 @@
+schedule:
+  start_time: "07:45:00"
+  end_time: "19:15:00"
+mqtt:
+  broker: "localhost"
+  port: 8883
+  cert:
+    ca: "paho_mqtt/cert/ca.crt"
+    cert: "paho_mqtt/cert/client.crt"
+    key: "paho_mqtt/cert/client.key"
+  topics:
+    - "zigbee2mqtt/test_device_1"
+    - "zigbee2mqtt/test_device_2"
+    - "zigbee2mqtt/test_device_3"
+iot_hub:
+  connection_string: "<connection-string-here>"
+timezone: "Asia/Singapore"
+time_threshold: 300
+client_id: "python-mqtt-1234"
