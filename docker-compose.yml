@@ -45,6 +45,7 @@ services:
     container_name: message_router
     volumes:
       - ./message_router/data:/app/data
+      - ./mosquitto/certs:/app/certs
     depends_on:
       - mosquitto
       - zigbee2mqtt
