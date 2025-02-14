@@ -16,6 +16,7 @@ services:
       - "1883:1883"
     volumes:
       - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/certs:/mosquitto/certs
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
     restart: unless-stopped
@@ -23,8 +24,7 @@ services:
       - hardware_service
     environment:
       - TZ=Asia/Singapore
-    networks:
-      - mqtt-network
+    network_mode: host
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
@@ -58,7 +58,3 @@ services:
       - TZ=Asia/Singapore
       - IOT_HUB_CONNECTION_STRING=${IOT_HUB_CONNECTION_STRING}
     restart: unless-stopped
-
-networks:
-  mqtt-network:
-    driver: bridge
