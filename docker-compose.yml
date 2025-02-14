@@ -29,11 +29,9 @@ services:
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
     container_name: zigbee2mqtt-iot
-    ports:
-      - "8080:8080"
     volumes:
       - ./zigbee2mqtt/data:/app/data
-      - ./zigbee2mqtt/log:/app/data/log
+      - ./mosquitto/certs:/app/certs
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
     environment:
@@ -42,19 +40,16 @@ services:
     depends_on:
       - mosquitto
       - hardware_service
-    networks:
-      - mqtt-network
+    network_mode: host
 
   message_router:
-    image: xiaoyeqiu514/cpf-iot-message-router
+    image: xiaoyeqiu514/cpf-iot-message-router:latest
     container_name: message_router
     depends_on:
       - mosquitto
       - zigbee2mqtt
       - hardware_service
-    networks:
-      - mqtt-network
+    network_mode: host
     environment:
       - TZ=Asia/Singapore
-      - IOT_HUB_CONNECTION_STRING=${IOT_HUB_CONNECTION_STRING}
     restart: unless-stopped
