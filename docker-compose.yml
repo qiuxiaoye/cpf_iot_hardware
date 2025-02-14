@@ -43,6 +43,8 @@ services:
   message_router:
     image: xiaoyeqiu514/cpf-iot-message-router:latest
     container_name: message_router
+    volumes:
+      - ./message_router/data:/app/data
     depends_on:
       - mosquitto
       - zigbee2mqtt
