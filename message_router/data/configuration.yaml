@@ -1,6 +1,6 @@
 schedule:
   start_time: "07:45:00"
-  end_time: "19:15:00"
+  end_time: "22:00:00"
 mqtt:
   broker: "localhost"
   port: 8883
