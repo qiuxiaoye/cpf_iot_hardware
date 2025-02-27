@@ -16,4 +16,3 @@ iot_hub:
   connection_string: "<connection-string-here>"
 timezone: "Asia/Singapore"
 time_threshold: 300
-client_id: "python-mqtt-1234"
