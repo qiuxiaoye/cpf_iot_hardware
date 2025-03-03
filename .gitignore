@@ -3,5 +3,5 @@ mosquitto/data/
 zigbee2mqtt/log/
 zigbee2mqtt/data/
 hardware_service/
-message_router/
+message_router/data/configuration.yaml
 .env
