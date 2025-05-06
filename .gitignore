@@ -5,3 +5,4 @@ zigbee2mqtt/data/
 hardware_service/
 message_router/data/configuration.yaml
 .env
+.DS_Store
