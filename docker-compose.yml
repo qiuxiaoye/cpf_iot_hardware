@@ -64,4 +64,5 @@ services:
       - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
     ports:
       - "80:80"
+    network_mode: host
     restart: unless-stopped
