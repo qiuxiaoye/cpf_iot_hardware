@@ -11,7 +11,7 @@ services:
 
   mosquitto:
     image: eclipse-mosquitto
-    container_name: mosquitto-iot
+    container_name: mosquitto
     volumes:
       - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./mosquitto/certs:/mosquitto/certs
@@ -26,7 +26,7 @@ services:
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt
-    container_name: zigbee2mqtt-iot
+    container_name: zigbee2mqtt
     volumes:
       - ./zigbee2mqtt/data:/app/data
       - ./mosquitto/certs:/app/certs
